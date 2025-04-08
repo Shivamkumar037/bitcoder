@@ -340,7 +340,181 @@ document.getElementById('list').appendChild(fragment);
 </pre>
 
 <p>DOM manipulation is JavaScript's most powerful feature that enables you to dynamically modify web pages. These techniques will help you build interactive web applications.</p>
+
         </div>
+<div class="content-of-page">
+
+ <h1 id="post3" class="main-post-heading">Automata Theory Fundamentals</h1>
+
+<h2>1. Introduction to Automata Theory</h2>
+<p>Automata theory is the study of abstract machines and the computational problems that can be solved using these machines. It forms the theoretical foundation of computer science and is closely related to formal language theory.</p>
+
+<div class="note">
+    <strong>Key Concept:</strong> Automata are mathematical models of computation that perform tasks on given inputs by transitioning through a series of states.
+</div>
+
+<h2>2. Types of Automata</h2>
+
+<h3>2.1 Finite Automata (FA)</h3>
+<p>Finite automata are the simplest type of automaton with a finite number of states.</p>
+
+<pre>
+// Formal definition of a Finite Automaton
+FA = (Q, Σ, δ, q₀, F)
+Where:
+Q = Finite set of states
+Σ = Finite set of input symbols (alphabet)
+δ = Transition function (Q × Σ → Q)
+q₀ = Initial state (q₀ ∈ Q)
+F = Set of final/accepting states (F ⊆ Q)
+</pre>
+
+<h4>Types of Finite Automata:</h4>
+<ul>
+    <li><strong>Deterministic Finite Automaton (DFA):</strong> Exactly one transition for each symbol in each state</li>
+    <li><strong>Nondeterministic Finite Automaton (NFA):</strong> May have multiple transitions for a symbol in a state</li>
+</ul>
+
+<h3>2.2 Pushdown Automata (PDA)</h3>
+<p>An extension of finite automata that includes a stack for memory.</p>
+
+<pre>
+// Formal definition of a Pushdown Automaton
+PDA = (Q, Σ, Γ, δ, q₀, Z₀, F)
+Where:
+Γ = Stack alphabet
+Z₀ = Initial stack symbol
+δ = Transition function (Q × (Σ ∪ {ε}) × Γ → finite subsets of Q × Γ*)
+</pre>
+
+<h3>2.3 Turing Machines</h3>
+<p>The most powerful automaton that can simulate any computer algorithm.</p>
+
+<pre>
+// Formal definition of a Turing Machine
+TM = (Q, Σ, Γ, δ, q₀, B, F)
+Where:
+Γ = Tape alphabet (Σ ⊆ Γ)
+B = Blank symbol (B ∈ Γ \ Σ)
+δ = Transition function (Q × Γ → Q × Γ × {L, R})
+</pre>
+
+<h2>3. Applications of Automata Theory</h2>
+
+<ul>
+    <li><strong>Compiler Design:</strong> Lexical analysis and parsing</li>
+    <li><strong>Text Processing:</strong> Regular expressions for pattern matching</li>
+    <li><strong>Software Verification:</strong> Model checking of finite-state systems</li>
+    <li><strong>Artificial Intelligence:</strong> State machines for AI behavior</li>
+    <li><strong>Network Protocols:</strong> Protocol state machines</li>
+</ul>
+
+<h2>4. Formal Languages Hierarchy</h2>
+
+<p>The Chomsky hierarchy classifies formal grammars and their corresponding automata:</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Type</th>
+        <th>Grammar</th>
+        <th>Automaton</th>
+        <th>Language</th>
+    </tr>
+    <tr>
+        <td>Type 0</td>
+        <td>Unrestricted</td>
+        <td>Turing Machine</td>
+        <td>Recursively enumerable</td>
+    </tr>
+    <tr>
+        <td>Type 1</td>
+        <td>Context-sensitive</td>
+        <td>Linear-bounded automaton</td>
+        <td>Context-sensitive</td>
+    </tr>
+    <tr>
+        <td>Type 2</td>
+        <td>Context-free</td>
+        <td>Pushdown automaton</td>
+        <td>Context-free</td>
+    </tr>
+    <tr>
+        <td>Type 3</td>
+        <td>Regular</td>
+        <td>Finite automaton</td>
+        <td>Regular</td>
+    </tr>
+</table>
+
+<h2>5. Practical Examples</h2>
+
+<h3>5.1 DFA Example - Binary Numbers Divisible by 3</h3>
+
+<pre>
+// States: q0 (remainder 0), q1 (remainder 1), q2 (remainder 2)
+// Alphabet: {0, 1}
+// Transition table:
+// δ(q0, 0) = q0
+// δ(q0, 1) = q1
+// δ(q1, 0) = q2
+// δ(q1, 1) = q0
+// δ(q2, 0) = q1
+// δ(q2, 1) = q2
+// Accepting state: q0
+</pre>
+
+<h3>5.2 Turing Machine Example - Palindrome Checker</h3>
+
+<pre>
+1. Move to the end of the input (right of the last symbol)
+2. Compare first and last symbols
+   - If equal, mark both (with special symbols) and move inward
+   - If not equal, reject
+3. Repeat until all symbols are marked or middle is reached
+4. If all comparisons were equal, accept
+</pre>
+
+<h2>6. Computational Power</h2>
+
+<p>The hierarchy of computational power:</p>
+<ol>
+    <li>Finite Automata (Regular languages)</li>
+    <li>Pushdown Automata (Context-free languages)</li>
+    <li>Linear Bounded Automata (Context-sensitive languages)</li>
+    <li>Turing Machines (Recursively enumerable languages)</li>
+</ol>
+
+<div class="note">
+    <strong>Church-Turing Thesis:</strong> Any computation that can be performed by an algorithm can be performed by a Turing machine.
+</div>
+
+<h2>7. Limitations of Automata</h2>
+
+<ul>
+    <li><strong>Finite Automata:</strong> Cannot count or remember arbitrary amounts of information</li>
+    <li><strong>Pushdown Automata:</strong> Cannot handle multiple stacks or more complex memory</li>
+    <li><strong>Turing Machines:</strong> Some problems are undecidable (e.g., Halting Problem)</li>
+</ul>
+
+<h2>8. Tools and Software</h2>
+
+<p>Popular tools for working with automata:</p>
+<ul>
+    <li><strong>JFLAP:</strong> Java-based tool for experimenting with automata</li>
+    <li><strong>JFLAP:</strong> Java Formal Languages and Automata Package</li>
+    <li><strong>Automata Tutor:</strong> Web-based learning tool</li>
+    <li><strong>JFLAP:</strong> Visualization of finite automata and grammars</li>
+</ul>
+
+<h2>9. Further Reading</h2>
+
+<ul>
+    <li>"Introduction to the Theory of Computation" by Michael Sipser</li>
+    <li>"Automata Theory, Languages, and Computation" by Hopcroft, Motwani, and Ullman</li>
+    <li>"Elements of the Theory of Computation" by Harry Lewis and Christos Papadimitriou</li>
+</ul>              
+        </div>
+
 
        </div>
    </main>
