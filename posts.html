@@ -515,6 +515,244 @@ B = Blank symbol (B ∈ Γ \ Σ)
 </ul>              
         </div>
 
+<div class="content-of-page">
+ <h1 id="post4" class="main-post-heading">
+   
+
+    
+    <h1>Complete JavaScript DOM Manipulation Guide</h1>
+    
+    <p>DOM manipulation is essential for creating interactive web pages. This guide covers all key concepts with practical examples.</p>
+
+    <h2>1. Selecting Elements</h2>
+    
+    <h3>Basic Selectors</h3>
+    <div class="code-block">
+// By ID - returns single element
+const element = document.getElementById('header');
+
+// By class name - returns HTMLCollection
+const elements = document.getElementsByClassName('menu-item');
+
+// By tag name - returns HTMLCollection
+const divs = document.getElementsByTagName('div');
+
+// Query selector - returns first match
+const firstMatch = document.querySelector('.special');
+
+// Query selector all - returns NodeList
+const allMatches = document.querySelectorAll('.item');
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> These are the fundamental methods to select elements. <code>getElementById</code> is fastest, while <code>querySelector</code> offers CSS selector flexibility. HTMLCollections are live (update automatically), while NodeLists are static by default.</p>
+    </div>
+    
+    <div class="demo-area">
+        <div id="demo-header">Header Element</div>
+        <div class="demo-item">Item 1</div>
+        <div class="demo-item">Item 2</div>
+        <button onclick="demoSelectors()">Test Selectors</button>
+        <div id="selector-output"></div>
+    </div>
+
+    <h2>2. Traversing the DOM</h2>
+    
+    <h3>Navigating Between Nodes</h3>
+    <div class="code-block">
+// Parent nodes
+const parent = childElement.parentNode;
+const parentElement = childElement.parentElement;
+
+// Child nodes
+const children = parent.childNodes; // Includes text nodes
+const childrenElements = parent.children; // Only elements
+
+// Siblings
+const next = element.nextElementSibling;
+const prev = element.previousElementSibling;
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> DOM traversal lets you navigate between elements without reselecting. <code>childNodes</code> includes text nodes (whitespace), while <code>children</code> only includes element nodes.</p>
+    </div>
+    
+    <div class="demo-area" id="traversal-demo">
+        <div>First Child</div>
+        <div id="traversal-target">Target Element (Middle Child)</div>
+        <div>Last Child</div>
+        <button onclick="demoTraversal()">Test Traversal</button>
+    </div>
+
+    <h2>3. Modifying Elements</h2>
+    
+    <h3>Changing Content and Attributes</h3>
+    <div class="code-block">
+// Content modification
+element.innerHTML = '&lt;strong&gt;Bold text&lt;/strong&gt;';
+element.textContent = 'Plain text only';
+
+// Attribute manipulation
+element.setAttribute('data-id', '123');
+const value = element.getAttribute('data-id');
+element.removeAttribute('title');
+
+// Class manipulation
+element.classList.add('active');
+element.classList.remove('inactive');
+element.classList.toggle('visible');
+
+// Style changes
+element.style.color = 'blue';
+element.style.marginTop = '10px';
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> <code>innerHTML</code> parses HTML, while <code>textContent</code> is safer against XSS. Class manipulation is preferred over direct <code>className</code> assignment. Style properties use camelCase.</p>
+    </div>
+    
+    <div class="demo-area">
+        <div id="content-demo">Original Content</div>
+        <div id="attr-demo" class="original" title="Hover text">Attribute Demo</div>
+        <button onclick="demoModification()">Test Modification</button>
+    </div>
+
+    <h2>4. Creating and Adding Elements</h2>
+    
+    <h3>Dynamic Element Creation</h3>
+    <div class="code-block">
+// Create new element
+const newDiv = document.createElement('div');
+newDiv.textContent = 'New Element';
+
+// Append to parent
+parent.appendChild(newDiv);
+
+// Insert at specific position
+parent.insertBefore(newDiv, referenceElement);
+
+// Insert adjacent HTML
+element.insertAdjacentHTML('beforeend', '&lt;div&gt;After&lt;/div&gt;');
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> <code>createElement</code> makes elements in memory. They only appear on page when added to DOM. <code>insertAdjacentHTML</code> offers precise positioning (beforebegin, afterbegin, beforeend, afterend).</p>
+    </div>
+    
+    <div class="demo-area">
+        <div id="element-container"></div>
+        <button onclick="demoCreateElements()">Create Elements</button>
+    </div>
+
+    <h2>5. Event Handling</h2>
+    
+    <h3>Event Listeners and Delegation</h3>
+    <div class="code-block">
+// Add event listener
+button.addEventListener('click', function(event) {
+    console.log('Clicked!', event.target);
+});
+
+// Event delegation
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.dynamic-item')) {
+        console.log('Dynamic item clicked');
+    }
+});
+
+// Remove event listener
+const handler = function() { console.log('Only once'); };
+element.addEventListener('click', handler, { once: true });
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> Event delegation attaches listeners to parent elements, useful for dynamic content. The <code>once</code> option auto-removes after firing. Always remove listeners when no longer needed.</p>
+    </div>
+    
+    <div class="demo-area">
+        <button id="click-demo">Click Me</button>
+        <div id="event-output"></div>
+        <div id="event-delegation">
+            <div class="dynamic-item">Item 1</div>
+            <div class="dynamic-item">Item 2</div>
+        </div>
+        <button onclick="addNewItem()">Add New Item</button>
+    </div>
+
+    <h2>6. Working with Forms</h2>
+    
+    <h3>Form Handling</h3>
+    <div class="code-block">
+// Form submission
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    
+    // Get values
+    const username = formData.get('username');
+    
+    // Process data
+    console.log(Array.from(formData.entries()));
+});
+
+// Input events
+input.addEventListener('input', function() {
+    console.log('Value changed:', this.value);
+});
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> <code>FormData</code> provides easy access to form values. <code>preventDefault()</code> stops page reload. Input events fire on each change (unlike change event which fires after blur).</p>
+    </div>
+    
+    <div class="demo-area">
+        <form id="sample-form">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="form-output"></div>
+    </div>
+
+    <h2>7. Performance Considerations</h2>
+    
+    <h3>Optimizing DOM Operations</h3>
+    <div class="code-block">
+// Document Fragment for batch additions
+const fragment = document.createDocumentFragment();
+for (let i = 0; i < 100; i++) {
+    const div = document.createElement('div');
+    fragment.appendChild(div);
+}
+document.body.appendChild(fragment);
+
+// Debouncing events
+let timeout;
+window.addEventListener('resize', function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+        // Handle resize
+    }, 200);
+});
+    </div>
+    
+    <div class="explanation">
+        <p><strong>How it works:</strong> Document fragments prevent layout thrashing by batching changes. Debouncing limits how often expensive operations run. Also consider throttling for different use cases.</p>
+    </div>
+    
+    <div class="demo-area">
+        <button onclick="demoPerformance()">Add 100 Elements</button>
+        <div id="performance-demo"></div>
+    </div>
+
+           
+
+</div>
+
 
        </div>
    </main>
