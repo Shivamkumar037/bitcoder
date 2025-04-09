@@ -55,3 +55,140 @@ document.getElementById("post-lists-box").addEventListener("click", () => {
     let box3 = document.getElementById("post-lists");
     box3.classList.toggle("post-list-open");
 });
+
+       
+
+
+
+
+
+
+// 1. Selecting Elements
+        function demoSelectors() {
+            const output = document.getElementById('selector-output');
+            output.innerHTML = '';
+            
+            // By ID
+            const header = document.getElementById('demo-header');
+            header.style.color = 'blue';
+            output.innerHTML += '<p>Changed header color using getElementById</p>';
+            
+            // By class name
+            const items = document.getElementsByClassName('demo-item');
+            for (let item of items) {
+                item.style.fontWeight = 'bold';
+            }
+            output.innerHTML += '<p>Bolded all items using getElementsByClassName</p>';
+            
+            // Query selector
+            const firstItem = document.querySelector('.demo-item');
+            firstItem.style.textDecoration = 'underline';
+            output.innerHTML += '<p>Underlined first item using querySelector</p>';
+        }
+
+        // 2. Traversing the DOM
+        function demoTraversal() {
+            const target = document.getElementById('traversal-target');
+            
+            // Parent
+            const parent = target.parentNode;
+            parent.style.border = '2px solid #3498db';
+            parent.style.padding = '10px';
+            
+            // Siblings
+            const next = target.nextElementSibling;
+            const prev = target.previousElementSibling;
+            next.style.color = 'green';
+            prev.style.color = 'red';
+        }
+
+        // 3. Modifying Elements
+        function demoModification() {
+            // Content
+            const content = document.getElementById('content-demo');
+    
+            // Attributes
+            const attrDemo = document.getElementById('attr-demo');
+            attrDemo.setAttribute('title', 'New hover text');
+            attrDemo.classList.add('modified');
+            attrDemo.classList.toggle('original');
+            
+            // Style
+            content.style.backgroundColor = '#f0f0f0';
+            content.style.padding = '10px';
+        }
+
+        // 4. Creating Elements
+        function demoCreateElements() {
+            const container = document.getElementById('element-container');
+            
+            // Create element
+            const newDiv = document.createElement('div');
+            newDiv.className = 'demo-box';
+            newDiv.textContent = 'New';
+            container.appendChild(newDiv);
+            
+            // Insert adjacent
+            container.insertAdjacentHTML('beforeend', '<div class="demo-box">Adjacent</div>');
+        }
+
+        // 5. Event Handling
+        document.getElementById('click-demo').addEventListener('click', function() {
+            document.getElementById('event-output').textContent = 'Button was clicked!';
+        });
+        
+        // Event delegation
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('.dynamic-item')) {
+                document.getElementById('event-output').textContent = 
+                    `Clicked: ${event.target.textContent}`;
+            }
+        });
+        
+        function addNewItem() {
+            const container = document.getElementById('event-delegation');
+            const count = container.children.length + 1;
+            const newItem = document.createElement('div');
+            newItem.className = 'dynamic-item';
+            newItem.textContent = `Item ${count}`;
+            container.appendChild(newItem);
+        }
+
+        // 6. Form Handling
+        document.getElementById('sample-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const output = document.getElementById('form-output');
+            
+            let html = '<h3>Submitted Data:</h3>';
+            for (let [key, value] of formData.entries()) {
+                html += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+            
+            output.innerHTML = html;
+        });
+
+        // 7. Performance
+        function demoPerformance() {
+            const container = document.getElementById('performance-demo');
+            container.innerHTML = '';
+            
+            // Without fragment (slower)
+            // for (let i = 0; i < 100; i++) {
+            //     const div = document.createElement('div');
+            //     div.textContent = i;
+            //     container.appendChild(div);
+            // }
+            
+            // With fragment (faster)
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < 100; i++) {
+                const div = document.createElement('div');
+                div.textContent = `Item ${i}`;
+                div.style.margin = '2px';
+                div.style.padding = '2px';
+                div.style.border = '1px solid #ddd';
+                fragment.appendChild(div);
+            }
+            container.appendChild(fragment);
+        }
