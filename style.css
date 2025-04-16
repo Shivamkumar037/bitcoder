@@ -149,11 +149,10 @@ a {
   justify-content: space-between;
   padding-bottom: 1vmin;
   flex-direction: column;
-  background-image: url('https://scontent.flko7-2.fna.fbcdn.net/v/t39.30808-6/489487294_672199399105390_5379257411402011933_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7CSETH8G-0wQ7kNvwEDypHQ&_nc_oc=AdmFMuyUPmxuaL7rYg-q0kd8_m2UUJRlnmyQl1d25FvTrzPUw1FhtWdvz4MZfsJI14IymayHuvegQDWUIPKOil55&_nc_zt=23&_nc_ht=scontent.flko7-2.fna&_nc_gid=0kEPfNC1uW9AEkY6WUm2pQ&oh=00_AfGfCz1c6owEszyGTsTcPryHdIw82dx2iCK8vF7icZdU1Q&oe=67F9B7CB');
-  background-position: center;
+ background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  animation: bacground 200s linear  infinite ;
+  animation: bacground 400s linear  infinite ;
 }
 @keyframes bacground {
 
